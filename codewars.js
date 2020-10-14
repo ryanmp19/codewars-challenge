@@ -1,5 +1,6 @@
 //#region Split Strings
 
+const { get } = require("http");
 const { start } = require("repl")
 
 // console.log(solution('abc')); 
@@ -560,8 +561,234 @@ const { start } = require("repl")
 
 //#endregion
 
-//#region Sudoku Solver https://www.codewars.com/kata/5296bc77afba8baa690002d7/train/javascript
+//#region Sudoku Solver https://www.codewars.com/kata/5296bc77afba8baa690002d7/train/javascript (UNSOLVED, solver is working but the recursive function return undefined D:)
 
+// this solver is a brute force solver
 
+// function sudoku(puzzle) {
+//   let solved = false
+//   const populateCandidate = () => {
+//     let populated = []
+    
+//     for (let i = 0; i < puzzle.length; i++) {
+//       for (let j = 0; j < puzzle[i].length; j++) {
+//         let candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        
+//         if (puzzle[i][j] === 0) {
+//           for (let k = 0; k < puzzle.length; k++) {
+//             if (puzzle[i][k] !== 0 && k !== j) {
+//               let idx = candidates.indexOf(puzzle[i][k])
+//               if (!(idx < 0)) candidates.splice(idx, 1)
+//             }
+//             if (puzzle[k][j] !== 0 && k !== i) {
+//               let idx = candidates.indexOf(puzzle[k][j])
+//               if (!(idx < 0)) candidates.splice(idx, 1)
+//             }
+//           }
+
+//           let rowSub = 3 * Math.floor(i/3)
+//           let colSub = 3 * Math.floor(j/3)
+//           for (let x = rowSub; x < rowSub + 3; x++) {
+//             for (let y = colSub; y < colSub + 3; y++) {
+//               if (puzzle[x][y] !== 0 && i !== x && j !== y) {
+//                 let idx = candidates.indexOf(puzzle[x][y])
+//                 if (!(idx < 0)) candidates.splice(idx, 1)
+//               }
+//             }
+//           }
+          
+//           if (candidates.length === 1) {
+//             puzzle[i][j] = candidates[0]
+//           } else {
+//             populated.push({
+//               row: i,
+//               col: j,
+//               candidates,
+//               choosen: -1
+//             })
+//           }
+//         }
+//       }
+//     }
+
+//     return populated
+//   }
+
+//   const check = (index) => {
+//     let num = puzzle[index.row][index.col]
+
+//     // horizontal & vertical
+//     for (let i = 0; i < 8; i++) {
+//       if (puzzle[index.row][i] === num && i !== index.col) return false
+//       if (puzzle[i][index.col] === num && i !== index.row) return false
+//     }
+
+//     // sub
+//     let rowSub = 3 * Math.floor(index.row/3)
+//     let colSub = 3 * Math.floor(index.col/3)
+//     for (let i = rowSub; i < rowSub + 3; i++) {
+//       for (let j = colSub; j < colSub + 3; j++) {
+//         if (puzzle[i][j] === num && i !== index.row && j !== index.col) return false
+//       }
+//     }
+
+//     return true
+//   }
+
+//   const sleep = (milliseconds) => {
+//     var start = new Date().getTime();
+//     for (var i = 0; i < 1e7; i++) {
+//       if ((new Date().getTime() - start) > milliseconds) {
+//         break;
+//       }
+//     }
+//   }
+
+//   const print = () => {
+//     sleep(20)
+//     console.clear()
+//     for (let i = 0; i < puzzle.length; i++) {
+//       console.log(puzzle[i].join(''))
+//     }
+//   }
+
+//   const solve = (ptr = 0) => {
+//     if (solved) return solved
+
+//     let {
+//       row,
+//       col,
+//       candidates
+//     } = populated[ptr]
+
+//     // if last candidate then backtrack
+//     if (populated[ptr].choosen + 1 === candidates.length) {
+//       puzzle[row][col] = 0
+//       populated[ptr].choosen = -1
+//       return solve(ptr - 1)
+//     } else {
+//       populated[ptr].choosen += 1
+//       puzzle[row][col] = candidates[populated[ptr].choosen]
+  
+//       if (check(populated[ptr])) {
+//         if (ptr + 1 < populated.length) return solve(ptr + 1)
+//         else solved = true
+//       } else {
+//         return solve(ptr)
+//       }
+//     }
+//   }
+
+//   const populated = populateCandidate()
+//   solve()
+
+//   return puzzle.forEach(row => console.log(row.join('')))
+// }
+
+// console.log(sudoku([
+//   [5,3,0,0,7,0,0,0,0],
+//   [6,0,0,1,9,5,0,0,0],
+//   [0,9,8,0,0,0,0,6,0],
+//   [8,0,0,0,6,0,0,0,3],
+//   [4,0,0,8,0,3,0,0,1],
+//   [7,0,0,0,2,0,0,0,6],
+//   [0,6,0,0,0,0,2,8,0],
+//   [0,0,0,4,1,9,0,0,5],
+//   [0,0,0,0,8,0,0,7,9]]));
 
 //#endregion
+
+//#region Primes in numbers https://www.codewars.com/kata/54d512e62a5e54c96200019e/train/javascript
+
+// function primeFactors(n){
+//   const populate = (n, prime = {}) => {
+//     for (let i = 2; i <= n; i++) {
+//       if (n % i === 0) {
+//         prime[i] = (prime[i]) ? prime[i] + 1 : 1
+        
+//         if (i === n) return prime
+//         else return populate(n / i, prime)
+//       }
+//     }
+//   }
+
+//   return Object.entries(populate(n)).reduce((acc, cur) => acc += cur[1] === 1 ? `(${cur[0]})` : `(${cur[0]}**${cur[1]})`, '') 
+// }
+
+// console.log(primeFactors(7775460) === "(2**2)(3**3)(5)(7)(11**2)(17)")
+
+//#endregion
+
+//#region First Variation on Caesar Cipher https://www.codewars.com/kata/5508249a98b3234f420000fb/train/javascript
+
+function movingShift(s, shift) {
+  // const chiper = (sentence, idx = 0, set = 'abcdefghijklmnopqrstuvwxyz') => {
+  //   set = set.substr(1, 25) + set[0]
+  //   if (idx < sentence.length - 1) {
+  //     if (/[a-z]/gi.test(sentence[idx])) {
+  //       let pos = sentence[idx].toUpperCase().charCodeAt() - 64
+  //       sentence[idx] = sentence[idx].charCodeAt() < 91 ? set[pos - 1].toUpperCase() : set[pos - 1]
+  //     }
+  //     return chiper(sentence, idx + 1, set)
+  //   } else {
+  //     return sentence
+  //   }
+  // }
+
+  // const chiper = (sentence, shift = 1) => {
+  //   let set = 'abcdefghijklmnopqrstuvwxyz'
+  //   if (shift <= sentence.length) {
+  //     if (/[a-z]/gi.test(sentence[shift - 1])) {
+  //       let code = sentence[shift - 1].toUpperCase(0).charCodeAt() - 65
+  //       sentence[shift - 1] = set[(code + shift) % 26]
+  //     }
+  //     return chiper(sentence, shift + 1)
+  //   } else {
+  //     return sentence
+  //   }
+  // }
+
+  // let words = chiper(s.split(''))
+  
+  let set = 'abcdefghijklmnopqrstuvwxyz'
+  let words = s.split('').map((char, i) => {
+    if  (!/[a-z]/gi.test(char)) return char
+    else {
+      let shifted = set[(char.toUpperCase(0).charCodeAt() - 65 + (i + 1)) % 26]
+      return (char === char.toUpperCase()) ? shifted.toUpperCase() : shifted
+    }
+  }).join('')
+
+  let n = 1
+  while (n * 5 < words.length) n++
+
+  let result = []
+  for (let i = 0; i < 5 ; i++) {
+    let str = words.substr(i * n, 14)
+    result.push(str)
+  }
+
+  // 0 - 13
+  // 14 - 27
+  // 28 - 41
+  // 42 - 55
+  // 56 - 66
+  return result
+}
+
+function demovingShift(arr, shift) {
+  return "";
+}
+
+console.log(movingShift('I should have known that you would have a perfect answer for me!!!', 1), ["J vltasl rlhr ", "zdfog odxr ypw", " atasl rlhr p ", "gwkzzyq zntyhv", " lvz wp!!!"]);
+
+//#endregion
+
+/*
+abcdefghijklmnopqrstuvwxyz
+bcdefghijklmnopqrstuvwxyza 1
+cdefghijklmnopqrstuvwxyzab 2
+defghijklmnopqrstuvwxyzabc 3
+efghijklmnopqrstuvwxyzabcd 4
+fghijklmnopqrstuvwxyzabcde 5
+*/
