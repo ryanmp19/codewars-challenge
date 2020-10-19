@@ -1,8 +1,5 @@
 //#region Split Strings
 
-const { get } = require("http");
-const { start } = require("repl")
-
 // console.log(solution('abc')); 
 
 // function solution (str) {
@@ -719,71 +716,90 @@ const { start } = require("repl")
 
 //#endregion
 
-//#region First Variation on Caesar Cipher https://www.codewars.com/kata/5508249a98b3234f420000fb/train/javascript
+//#region First Variation on Caesar Cipher https://www.codewars.com/kata/5508249a98b3234f420000fb/train/javascript (UNSOLVED)
 
-function movingShift(s, shift) {
-  // const chiper = (sentence, idx = 0, set = 'abcdefghijklmnopqrstuvwxyz') => {
-  //   set = set.substr(1, 25) + set[0]
-  //   if (idx < sentence.length - 1) {
-  //     if (/[a-z]/gi.test(sentence[idx])) {
-  //       let pos = sentence[idx].toUpperCase().charCodeAt() - 64
-  //       sentence[idx] = sentence[idx].charCodeAt() < 91 ? set[pos - 1].toUpperCase() : set[pos - 1]
-  //     }
-  //     return chiper(sentence, idx + 1, set)
-  //   } else {
-  //     return sentence
-  //   }
-  // }
+// function movingShift(s, shift) {
+//   // const chiper = (sentence, idx = 0, set = 'abcdefghijklmnopqrstuvwxyz') => {
+//   //   set = set.substr(1, 25) + set[0]
+//   //   if (idx < sentence.length - 1) {
+//   //     if (/[a-z]/gi.test(sentence[idx])) {
+//   //       let pos = sentence[idx].toUpperCase().charCodeAt() - 64
+//   //       sentence[idx] = sentence[idx].charCodeAt() < 91 ? set[pos - 1].toUpperCase() : set[pos - 1]
+//   //     }
+//   //     return chiper(sentence, idx + 1, set)
+//   //   } else {
+//   //     return sentence
+//   //   }
+//   // }
 
-  // const chiper = (sentence, shift = 1) => {
-  //   let set = 'abcdefghijklmnopqrstuvwxyz'
-  //   if (shift <= sentence.length) {
-  //     if (/[a-z]/gi.test(sentence[shift - 1])) {
-  //       let code = sentence[shift - 1].toUpperCase(0).charCodeAt() - 65
-  //       sentence[shift - 1] = set[(code + shift) % 26]
-  //     }
-  //     return chiper(sentence, shift + 1)
-  //   } else {
-  //     return sentence
-  //   }
-  // }
+//   // const chiper = (sentence, shift = 1) => {
+//   //   let set = 'abcdefghijklmnopqrstuvwxyz'
+//   //   if (shift <= sentence.length) {
+//   //     if (/[a-z]/gi.test(sentence[shift - 1])) {
+//   //       let code = sentence[shift - 1].toUpperCase(0).charCodeAt() - 65
+//   //       sentence[shift - 1] = set[(code + shift) % 26]
+//   //     }
+//   //     return chiper(sentence, shift + 1)
+//   //   } else {
+//   //     return sentence
+//   //   }
+//   // }
 
-  // let words = chiper(s.split(''))
+//   // let words = chiper(s.split(''))
   
-  let set = 'abcdefghijklmnopqrstuvwxyz'
-  let words = s.split('').map((char, i) => {
-    if  (!/[a-z]/gi.test(char)) return char
-    else {
-      let shifted = set[(char.toUpperCase(0).charCodeAt() - 65 + (i + 1)) % 26]
-      return (char === char.toUpperCase()) ? shifted.toUpperCase() : shifted
-    }
-  }).join('')
+//   let set = 'abcdefghijklmnopqrstuvwxyz'
+//   let words = s.split('').map((char, i) => {
+//     if  (!/[a-z]/gi.test(char)) return char
+//     else {
+//       let shifted = set[(char.toUpperCase(0).charCodeAt() - 65 + (i + 1)) % 26]
+//       // console.log(`pos ${i}: ${char} (${char.toUpperCase(0).charCodeAt() - 65}) => (${(char.toUpperCase(0).charCodeAt() - 65 + (i + 1)) % 26}) ${shifted}`);
+//       return (char === char.toUpperCase()) ? shifted.toUpperCase() : shifted
+//     }
+//   }).join('')
 
-  let n = 1
-  while (n * 5 < words.length) n++
+//   console.log(words);
+//   let n = 1
+//   while (n * 5 < words.length) n++
 
-  let result = []
-  for (let i = 0; i < 5 ; i++) {
-    let str = words.substr(i * n, 14)
-    result.push(str)
-  }
+//   let result = []
+//   for (let i = 0; i < 5 ; i++) {
+//     let str = words.substr(i * n, n)
+//     result.push(str)
+//   }
 
-  // 0 - 13
-  // 14 - 27
-  // 28 - 41
-  // 42 - 55
-  // 56 - 66
-  return result
-}
+//   return result
+// }
 
-function demovingShift(arr, shift) {
-  return "";
-}
+// // P FEUZHQW! yl yl Rqgltci! mi! mtr hhewlbtwlbt dcuc xi vxi vhhz;
+// // P FEUZHQW! yl    Rqgltci!     mtr hhewlbt     dcuc xi     vhhz;
 
-console.log(movingShift('I should have known that you would have a perfect answer for me!!!', 1), ["J vltasl rlhr ", "zdfog odxr ypw", " atasl rlhr p ", "gwkzzyq zntyhv", " lvz wp!!!"]);
+// function demovingShift(arr, shift) {
+//   let set = 'abcdefghijklmnopqrstuvwxyz'
+//   console.log(arr.join(''));
+//   // return arr.join('').split('').map((char, i) => {
+//   //   if  (!/[a-z]/gi.test(char)) return char
+//   //   else {
+//   //     let a = char.toUpperCase(0).charCodeAt() - 65
+//   //     let b = a - (i + 1) % 26
+//   //     let shiftedPos = (char.toUpperCase(0).charCodeAt() - 65 - (i + 1)) % 26
+//   //     shiftedPos = shiftedPos < 0 ? shiftedPos + 26 : shiftedPos
+//   //     let shiftedChar = set[shiftedPos]
+//   //     console.log(`pos ${i}: ${char} (${a}) => (${b}) ${shiftedChar} (${shiftedPos})`);
+//   //     return (char === char.toUpperCase()) ? shiftedChar.toUpperCase() : shiftedChar
+//   //   }
+//   // }).join('')
+// }
 
-//#endregion
+// console.log(movingShift('O CAPTAIN! my Captain! our fearful trip is done;', 1));
+// console.log(demovingShift(["J vltasl rlhr ", "zdfog odxr ypw", " atasl rlhr p ", "gwkzzyq zntyhv", " lvz wp!!!"], 1));
+// console.log(demovingShift([ 'Fzxpy, W csaes',
+// 'f, Q fjrsa! Mg',
+// 'jmtrohxp zymjn',
+// ' zbaj na Gfvai',
+// 'tfgak bomf esj' ]), 1)
+// console.log(`Exult, O shores, and ring, O bells! But I, with mournful tread, Walk the deck my Captain lies, Fallen cold and dead.`);
 
+// for reference
 /*
 abcdefghijklmnopqrstuvwxyz
 bcdefghijklmnopqrstuvwxyza 1
@@ -792,3 +808,113 @@ defghijklmnopqrstuvwxyzabc 3
 efghijklmnopqrstuvwxyzabcd 4
 fghijklmnopqrstuvwxyzabcde 5
 */
+
+//#endregion
+
+//#region Gravity Flip https://www.codewars.com/kata/5f70c883e10f9e0001c89673/train/javascript
+
+// const flip = (d, a) => {
+//   return a.sort((b, c) => (d === 'R') ? b - c : c - b)
+// }
+
+//#endregion
+
+//#region Multiples of 3 or 5 https://www.codewars.com/kata/514b92a657cdc65150000006/train/javascript
+
+// function solution(number){
+//   if (number < 0) return 0
+//   else {
+//     let arr = []
+//     for (let i = 1; i < number; i++) {
+//       if (i % 3 === 0 || i % 5 === 0) arr.push(i)
+//     }
+
+//     return arr.reduce((acc, prev) => acc + prev, 0)
+//   }
+// }
+
+// console.log(solution(10));
+
+//#endregion
+
+//#region Find the odd int https://www.codewars.com/kata/54da5a58ea159efa38000836/train/javascript
+
+// function findOdd(A) {
+//   let counter = {}
+//   A.forEach(i => !counter[i] ? counter[i] = 1 : counter[i] += 1)
+//   return Object.entries(counter).find(i => i[1] % 2)[0]
+// }
+
+// console.log(findOdd([20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5], 5));
+
+//#endregion
+
+//#region Vowel Count https://www.codewars.com/kata/54ff3102c1bad923760001f3/train/javascript
+
+// function getCount(str) {
+//   return str.split('').reduce((acc, prev) => acc + (['a', 'e', 'i', 'o', 'u'].includes(prev) ? 1 : 0), 0)
+// }
+
+// console.log(getCount("abracadabra"), 5)
+
+//#endregion
+
+//#region Mumbling https://www.codewars.com/kata/5667e8f4e3f572a8f2000039/train/javascript
+
+// function accum(s) {
+//   return s.split('').map((char, i) => [...new Array(i + 1).keys()].map(x => x === 0 ? char.toUpperCase() : char.toLowerCase()).join('')).join('-')
+// }
+
+// console.log(accum("ZpglnRxqenU"), "Z-Pp-Ggg-Llll-Nnnnn-Rrrrrr-Xxxxxxx-Qqqqqqqq-Eeeeeeeee-Nnnnnnnnnn-Uuuuuuuuuuu");
+
+//#endregion
+
+//#region Persistent Bugger https://www.codewars.com/kata/55bf01e5a717a0d57e0000ec/train/javascript
+
+// function persistence(num, times = 0) {
+//   num = num.toString().split('')
+//   if (num.length === 1) return times
+//   else {
+//     return persistence(num.reduce((acc, prev) => acc * prev, 1), times + 1)
+//   }
+// }
+
+// console.log(persistence(39), 3);
+
+//#endregion
+
+//#region Decode the Morse code https://www.codewars.com/kata/54b724efac3d5402db00065e/train/javascript (MUST BE RUN AT CODEWARS)
+
+// decodeMorse = function(morseCode) {
+//   let start = 0,
+//       end = morseCode.length
+  
+//   // get start morse code position
+//   if (morseCode[start] === ' ') {
+//     for (let i = 0; i < morseCode.length; i++) {
+//       if (!(morseCode[i] === ' ')) {
+//         start = i
+//         break
+//       }
+//     } 
+//   }
+  
+//   // get end morse code position
+//   if (morseCode[end - 1] === ' ') {
+//     for (let i = morseCode.length - 1; i >= 0; i--) {
+//       if (!(morseCode[i] === ' ')) {
+//         end = i + 1
+//         break
+//       }
+//     } 
+//   }
+
+//   return morseCode
+//     .substring(start, end)
+//     .replace(/(  )/g, ' ') //
+//     .split(' ')
+//     .map((block, i) => !MORSE_CODE[block] ? ' ' : MORSE_CODE[block]).join('')
+// }
+
+//#endregion
+
